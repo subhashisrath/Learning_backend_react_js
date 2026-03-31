@@ -1,0 +1,5 @@
+# Dependencies (can be re-installed with npm install)
+node_modules/
+
+# Environment variables (contains secrets!)
+.env

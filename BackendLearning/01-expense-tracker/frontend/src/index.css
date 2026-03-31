@@ -1,0 +1,140 @@
+/* ============================================================
+   📘 LESSON: TAILWIND CSS v4 SETUP
+   
+   In Tailwind v4, you import Tailwind directly in your CSS file.
+   This single line gives you access to ALL of Tailwind's utility
+   classes (like bg-blue-500, text-white, flex, p-4, etc.)
+   
+   WHAT ARE UTILITY CLASSES?
+   Instead of writing custom CSS rules like:
+     .my-button { background: blue; padding: 8px 16px; }
+   You apply small, single-purpose classes directly in HTML/JSX:
+     <button className="bg-blue-500 px-4 py-2">Click me</button>
+   
+   WHY TAILWIND?
+   1. No naming headaches — no more .card-header-title-main
+   2. No CSS files to manage — styles live right in the component
+   3. Consistency — predefined spacing, colors, and sizes
+   4. Responsive — just add sm:, md:, lg: prefixes
+   ============================================================ */
+
+@import "tailwindcss";
+
+/* ============================================================
+   📘 LESSON: CSS VARIABLES (Custom Properties) with Tailwind
+   
+   Even with Tailwind, we can define CSS variables for our
+   custom color theme. These let us:
+   1. Use consistent colors across the app
+   2. Reference them in Tailwind's arbitrary value syntax: bg-[var(--bg-primary)]
+   3. Easily change the entire theme by editing a few lines
+   
+   Tailwind v4 also lets you extend the theme with @theme,
+   but for learning purposes, CSS variables are more universal.
+   ============================================================ */
+
+/* ─── IMPORTS ─── */
+/* 📘 Google Fonts: We import "Inter" — a modern, clean font */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* Colors */
+  --bg-primary: #0f0f23;
+  --bg-secondary: #1a1a3e;
+  --bg-card: #1e1e44;
+  --bg-input: #252550;
+  --text-primary: #e8e8ff;
+  --text-secondary: #a0a0cc;
+  --text-muted: #6b6b99;
+  --accent-primary: #6c5ce7;
+  --accent-secondary: #a29bfe;
+  --accent-success: #00b894;
+  --accent-danger: #ff6b6b;
+  --accent-warning: #ffd93d;
+  --border-color: #2d2d5e;
+}
+
+/* ─── GLOBAL RESET ─── */
+/* 📘 Tailwind includes its own reset (Preflight), but we add
+   our custom body defaults here */
+body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   📘 LESSON: CUSTOM CSS + TAILWIND
+   
+   Tailwind handles most styling, but some things are better
+   as custom CSS:
+   1. Animations (keyframes)
+   2. Complex pseudo-elements (::before)
+   3. Base styles (body, root)
+   
+   You CAN use Tailwind for animations too, but writing
+   @keyframes is clearer for learning purposes.
+   ============================================================ */
+
+/* ─── ANIMATIONS ─── */
+@keyframes shimmer {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(30px, 20px);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ─── ANIMATION UTILITIES ─── */
+/* 📘 We create custom classes for our animations.
+   Tailwind has built-in animate-spin, animate-pulse, etc.
+   but custom animations need custom classes. */
+.animate-shimmer {
+  animation: shimmer 8s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease;
+}
+
+.animate-spin-custom {
+  animation: spin 0.8s linear infinite;
+}
